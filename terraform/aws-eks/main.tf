@@ -33,7 +33,7 @@ resource "aws_iam_role_policy_attachment" "eks-cluster-AmazonEKSServicePolicy" {
 resource "aws_security_group" "eks-cluster" {
   name        = "SG-eks-cluster"
 # Use your VPC here
-  vpc_id      = "vpc-029b6b0c06ba11ddf" 
+  vpc_id      = "vpc-050cbe0c3610f4bdc" 
  # Outbound Rule
   egress {                
     from_port   = 0
@@ -60,7 +60,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   vpc_config {            
    security_group_ids = ["${aws_security_group.eks-cluster.id}"]
 # Configure subnets below
-   subnet_ids         = ["subnet-015841d7f99af5b78","subnet-08ca46c99afc2a5b2"] 
+   subnet_ids         = ["subnet-013cb1bcd12c3e2c2","subnet-072314b18f6379b5e"] 
     }
   depends_on = [
     "aws_iam_role_policy_attachment.eks-cluster-AmazonEKSClusterPolicy",
@@ -110,7 +110,7 @@ resource "aws_eks_node_group" "node-webapp" {
   node_group_name = "node_webapp"
   node_role_arn   = aws_iam_role.eks_nodes.arn
   instance_types = ["t3.small"]
-  subnet_ids     = ["subnet-015841d7f99af5b78"]
+  subnet_ids         = ["subnet-013cb1bcd12c3e2c2","subnet-072314b18f6379b5e"]
   scaling_config {
     desired_size = 1
     max_size     = 2
@@ -130,7 +130,7 @@ resource "aws_eks_node_group" "node-db" {
   node_group_name = "node_db"
   node_role_arn   = aws_iam_role.eks_nodes.arn
   instance_types = ["t3.small"]
-  subnet_ids      = ["subnet-015841d7f99af5b78"]
+  subnet_ids         = ["subnet-013cb1bcd12c3e2c2","subnet-072314b18f6379b5e"]
   scaling_config {
     desired_size = 1
     max_size     = 2
