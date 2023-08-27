@@ -4,14 +4,14 @@ metadata:
   name: my-ingress
 spec:
   rules:
-    - host: your-host-url.com
+    - host: customer.sandbox.curve.tech
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: your-target-service
+                name: sandbox.curve.tech
                 port:
                   number: your-service-port
 
