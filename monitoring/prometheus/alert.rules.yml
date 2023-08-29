@@ -1,0 +1,11 @@
+groups:
+- name: alert.rules
+  rules:
+  - alert: Non200Response
+    expr: http_requests_total{status!="200"} > 0
+    for: 1m
+    labels:
+      severity: high
+    annotations:
+      summary: "Non-200 HTTP Response Detected"
+      description: "Non-200 HTTP status code detected in the last minute."
